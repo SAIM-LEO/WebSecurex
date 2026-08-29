@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History | WebSecureX</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/hacker-mode.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="nav-logo">WEBSECUREX</a>
+        <div class="nav-links">
+            <a href="index.html"><i class="fas fa-search-shield"></i> Scanner</a>
+            <a href="history.html" class="active"><i class="fas fa-history"></i> History</a>
+            <a href="scheduler.html"><i class="fas fa-clock"></i> Scheduler</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                </div>
+        </div>
+        <div class="nav-user">
+            <div class="hacker-toggle-wrapper">
+                <i class="fas fa-terminal" style="font-size: 0.8rem; color: #7a9ab8;"></i>
+                <span style="font-size: 0.7rem; color: #7a9ab8; margin-right: 5px;">Hacker Mode</span>
+                <label class="switch">
+                    <input type="checkbox" id="hacker-mode-slider">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <button class="user-profile-btn" id="settings-trigger">
+                <i class="fas fa-user-shield"></i>
+                <span id="nav-username">LEO</span>
+            </button>
+            <button class="logout-btn" id="logout-btn">LOGOUT</button>
+        </div>
+    </nav>
+
+    <div class="container fadeInUp">
+        <h1 style="font-family: var(--font-header); margin-bottom: 30px;">AUDIT HISTORY</h1>
+        
+        <div class="card neon-border">
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Target URL</th>
+                            <th>Mode</th>
+                            <th>Date</th>
+                            <th>Risk</th>
+                            <th>DB Type</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-table">
+                        <!-- Rows injected by app.js -->
+                        <tr><td colspan="6" style="text-align:center; padding:40px; color:var(--text-muted);">Syncing with mainframe...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content card neon-border fadeInUp">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
+                <h2 style="color: var(--accent-cyan); font-family: 'Orbitron', sans-serif; margin: 0; font-size: 1.1rem;">USER SETTINGS</h2>
+                <button id="close-settings" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1.3rem;">&times;</button>
+            </div>
+            
+            <div class="settings-section">
+                <h3 style="color: var(--accent-green); font-size: 0.75rem; margin-bottom: 10px; letter-spacing: 1px;">WEBSITE CONTROLS</h3>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,212,255,0.05); padding: 8px 12px; border-radius: 4px; border: 1px solid rgba(0,212,255,0.1);">
+                        <span style="font-size: 0.7rem; color: var(--text-secondary);">Save Scan History Automatically</span>
+                        <label class="switch" style="transform: scale(0.85);"><input type="checkbox" checked><span class="slider"></span></label>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,212,255,0.05); padding: 8px 12px; border-radius: 4px; border: 1px solid rgba(0,212,255,0.1);">
+                        <span style="font-size: 0.7rem; color: var(--text-secondary);">Enable Real-time Threat Alerts</span>
+                        <label class="switch" style="transform: scale(0.85);"><input type="checkbox" checked><span class="slider"></span></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section" style="margin-top: 15px; border-top: 1px solid rgba(0,212,255,0.1); padding-top: 15px;">
+                <h3 style="color: var(--accent-orange); font-size: 0.75rem; margin-bottom: 10px; letter-spacing: 1px;">SECURITY: CHANGE PASSWORD</h3>
+                <form id="change-password-form" style="display: flex; flex-direction: column; gap: 8px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <input type="password" placeholder="Current" class="terminal-input" required style="font-size: 0.7rem; height: 32px;">
+                        <input type="password" placeholder="New" class="terminal-input" required style="font-size: 0.7rem; height: 32px;">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="height: 35px; font-size: 0.75rem;">UPDATE CREDENTIALS</button>
+                    <p id="password-status" style="font-size: 0.65rem; text-align: center; margin-top: 5px; display: none;"></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+
+    <html><head><style>
+        body { background: #050a0e; color: #e8f4fd; font-family: 'JetBrains Mono', monospace; padding: 40px; line-height: 1.6; }
+        .card { background: #0d1f35; border: 1px solid rgba(0, 212, 255, 0.2); padding: 25px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 0 15px rgba(0,0,0,0.5); }
+        .risk-badge { padding: 5px 15px; border-radius: 4px; font-weight: bold; text-transform: uppercase; border: 1px solid; }
+        .risk-critical { color: #ff2d55; border-color: #ff2d55; background: rgba(255,45,85,0.1); }
+        .risk-high { color: #ff8c00; border-color: #ff8c00; }
+        .risk-safe { color: #00ff88; border-color: #00ff88; }
+        h1 { font-family: 'Orbitron', sans-serif; color: #00d4ff; letter-spacing: 2px; }
+        .tool-name { color: #00ff88; font-family: 'Orbitron', sans-serif; }
+        pre { background: #020d1a; padding: 15px; border-radius: 8px; color: #7a9ab8; font-size: 12px; overflow-x: auto; }
+        details { margin-top: 15px; border: 1px solid rgba(255,255,255,0.05); border-radius: 5px; }
+        summary { padding: 10px; cursor: pointer; color: #3d5a73; }
+    </style></head><body>
+        <h1>WEBSECUREX AUDIT REPORT</h1>
+        <div class="card">
+            <p>Target: <strong>https://pu.edu.pk/home/section/allpress/5162</strong></p>
+            <p>Risk Level: <span class="risk-badge risk-safe">Safe</span></p>
+            <p>Database Type: <span style="color: #00d4ff">UNKNOWN</span></p>
+            <p>Vulnerabilities: 0</p>
+        </div>
+    
+        <div class="card">
+            <h2 class="tool-name">XSStrike Results</h2>
+            <p>Status: Completed | Vulnerable: <span style="color: #00ff88">False</span></p>
+            
+            
+            <details><summary>View Raw Engine Output</summary><pre>[91m
+	XSStrike [97mv3.1.5
+[0m
+[97m[~][0m Crawling the target [0m
+[97m[~][0m Parsing home/section/allpress/5162               [0m[91m------------------------------------------------------------[0m
+[92m[+][0m Vulnerable component: jquery v3.2.1 [0m
+[93m[!][0m Component location: https://pu.edu.pk/temp1/lib/jquery/jquery.min.js [0m
+[93m[!][0m Total vulnerabilities: 1 [0m
+[93m[!][0m [92mSummary:[0m jQuery before 3.4.0, as used in Drupal, Backdrop CMS, and other products, mishandles jQuery.extend(true, {}, ...) because of Object.prototype pollution [0m
+[93m[!][0m Severity: low [0m
+[93m[!][0m CVE: CVE-2019-11358 [0m
+[91m------------------------------------------------------------[0m
+[91m------------------------------------------------------------[0m
+[92m[+][0m Vulnerable component: jquery-migrate v3.0.0 [0m
+[93m[!][0m Component location: https://pu.edu.pk/temp1/lib/jquery/jquery-migrate.min.js [0m
+[93m[!][0m Total vulnerabilities: 0 [0m
+[91m------------------------------------------------------------[0m
+[91m------------------------------------------------------------[0m
+[92m[+][0m Vulnerable component: bootstrap v4.0.0-beta.3 [0m
+[93m[!][0m Component location: https://pu.edu.pk/temp1/lib/bootstrap/js/bootstrap.bundle.min.js [0m
+[93m[!][0m Total vulnerabilities: 0 [0m
+[91m------------------------------------------------------------[0m
+[97m[~][0m Parsing home/section/exam/17057                  [0m[97m[~][0m Parsing page/show/Gazettes.html                  [0m[97m[~][0m Parsing home/section/exam/17041                  [0m[97m[~][0m Parsing home/section/exam/17038                  [0m[97m[~][0m Parsing page/show/University-Calendar.html       [0m[97m[~][0m Parsing home/section/exam/17034                  [0m[97m[~][0m Parsing page/facility/campuslife.html            [0m[97m[~][0m Parsing page/show/infodesk.html                  [0m[97m[~][0m Parsing home/section/exam/17032                  [0m[97m[~][0m Parsing home/section/exam/17071                  [0m[97m[~][0m Parsing club/                                    [0m[97m[~][0m Parsing home/section/exam/17042                  [0m[97m[~][0m Parsing page/show/rti.html                       [0m[97m[~][0m Parsing home/section/exam/17051                  [0m[97m[~][0m Parsing page/show/Nobel-Prize-Holders-ofPU.html  [0m[97m[~][0m Parsing home/section/exam/17074                  [0m[97m[~][0m Parsing home/sitemap                             [0m[97m[~][0m Parsing home/section/exam/17037                  [0m[97m[~][0m Parsing home/section/exam/17075                  [0m[97m[~][0m Parsing home/section/exam/17030                  [0m[97m[~][0m Parsing home/datesheets/                         [0m[97m[~][0m Parsing page/show/historyandpride.html           [0m[97m[~][0m Parsing home/exam_news                           [0m[97m[~][0m Parsing page/show/PU-Routes-Buses.html           [0m[97m[~][0m Parsing home/section/exam/17070                  [0m[97m[~][0m Parsing home/results/                            [0m[97m[~][0m Parsing /Vision-Mission-Statement-and-Goals.html [0m[97m[~][0m Parsing home/section/exam/17069                  [0m[97m[~][0m Parsing pudp/                                    [0m[97m[~][0m Parsing /page/show/contact-us.html               [0m[91m------------------------------------------------------------[0m
+[92m[+][0m Vulnerable component: jquery v3.3.1 [0m
+[93m[!][0m Component location: https://pu.edu.pk/club/js/vendor/jquery-3.3.1.min.js [0m
+[93m[!][0m Total vulnerabilities: 1 [0m
+[93m[!][0m [92mSummary:[0m jQuery before 3.4.0, as used in Drupal, Backdrop CMS, and other products, mishandles jQuery.extend(true, {}, ...) because of Object.prototype pollution [0m
+[93m[!][0m Severity: low [0m
+[93m[!][0m CVE: CVE-2019-11358 [0m
+[91m------------------------------------------------------------[0m
+[97m[~][0m Parsing home/section/exam/17043                  [0m[97m[~][0m Parsing page/show/contact-us.html                [0m[97m[~][0m Parsing ortant-information-foreign-students.html [0m[97m[~][0m Parsing home/section/exam/17048                  [0m[97m[~][0m Parsing home/section/exam/17044                  [0m[97m[~][0m Parsing page/show/Newsletter.html                [0m[97m[~][0m Parsing puac                                     [0m[92m[+][0m Potentially vulnerable objects found at https://pu.edu.pk/home/results/ [0m
+[91m------------------------------------------------------------[0m
+22  							//[91malert(document.getElementById('ID1').innerHTML[0m)
+[91m------------------------------------------------------------[0m
+[97m[~][0m Parsing page/show/informative-links.html         [0m[97m[~][0m Parsing home/schedules                           [0m[97m[~][0m Parsing page/show/Past-Papers.html               [0m[97m[~][0m Parsing home/Independent                         [0m[97m[~][0m Parsing page/detail/Political-Map-Pakistan.html  [0m[97m[~][0m Parsing home/section/exam/17035                  [0m[97m[~][0m Parsing home/section/exam/17072                  [0m[91m------------------------------------------------------------[0m
+[92m[+][0m Vulnerable component: jquery v2.2.3 [0m
+[93m[!][0m Component location: https://pu.edu.pk/pudp/js/jquery.js [0m
+[93m[!][0m Total vulnerabilities: 3 [0m
+[93m[!][0m [92mSummary:[0m parseHTML() executes scripts in event handlers [0m
+[93m[!][0m Severity: medium [0m
+[93m[!][0m CVE: CVE-2015-9251 [0m
+[93m[!][0m [92mSummary:[0m jQuery before 3.4.0, as used in Drupal, Backdrop CMS, and other products, mishandles jQuery.extend(true, {}, ...) because of Object.prototype pollution [0m
+[93m[!][0m Severity: low [0m
+[93m[!][0m CVE: CVE-2019-11358 [0m
+[93m[!][0m [92mSummary:[0m 3rd party CORS request may execute [0m
+[93m[!][0m Severity: medium [0m
+[93m[!][0m CVE: CVE-2015-9251 [0m
+[91m------------------------------------------------------------[0m
+[97m[~][0m Parsing home/section/exam/17066                  [0m[91m------------------------------------------------------------[0m
+[92m[+][0m Vulnerable component: bootstrap v4.3.1 [0m
+[93m[!][0m Component location: https://pu.edu.pk/club/js/vendor/bootstrap.min.js [0m
+[93m[!][0m Total vulnerabilities: 0 [0m
+[91m------------------------------------------------------------[0m
+[97m[~][0m Parsing home/debate                              [0m[97m[~][0m Parsing page/show/PhD-Produced.html              [0m[97m[~][0m Parsing departments/                             [0m[97m[~][0m Parsing page/show/former-vcs.html                [0m[91m------------------------------------------------------------[0m
+[92m[+][0m Vulnerable component: bootstrap v3.3.6 [0m
+[93m[!][0m Component location: https://pu.edu.pk/pudp/js/bootstrap.min.js [0m
+[93m[!][0m Total vulnerabilities: 4 [0m
+[93m[!][0m [92mSummary:[0m XSS in data-target property of scrollspy [0m
+[93m[!][0m Severity: medium [0m
+[93m[!][0m CVE: CVE-2018-14041 [0m
+[93m[!][0m [92mSummary:[0m XSS in collapse data-parent attribute [0m
+[93m[!][0m Severity: medium [0m
+[93m[!][0m CVE: CVE-2018-14040 [0m
+[93m[!][0m [92mSummary:[0m XSS in data-container property of tooltip [0m
+[93m[!][0m Severity: medium [0m
+[93m[!][0m CVE: CVE-2018-14042 [0m
+[93m[!][0m [92mSummary:[0m XSS in data-template, data-content and data-title properties of tooltip/popover [0m
+[93m[!][0m Severity: high [0m
+[97m[~][0m Parsing home/section/exam/17062                  [0m[93m[!][0m CVE: CVE-2019-8331 [0m
+[97m[~][0m Parsing splash/resultcard                        [0m[91m------------------------------------------------------------[0m
+[97m[~][0m Parsing home/section/exam/17055                  [0m[97m[~][0m Parsing faq                                      [0m[97m[~][0m Parsing home/section/exam/17060                  [0m[97m[~][0m Parsing page/show/AboutUs.html                   [0m[97m[~][0m Parsing page/show/Fact-Books.html                [0m[97m[~][0m Parsing home/section/exam/17039                  [0m[97m[~][0m Parsing home/search/                             [0m[97m[~][0m Parsing home/section/exam/17050                  [0m[97m[~][0m Parsing home/sports                              [0m[97m[~][0m Parsing home/section/exam/17036                  [0m[97m[~][0m Parsing home/section/exam/17068                  [0m[97m[~][0m Parsing home/section/exam/17049                  [0m[97m[~][0m Parsing page/show/course_outline.html            [0m[92m[+][0m Potentially vulnerable objects found at https://pu.edu.pk/home/search/ [0m
+[91m------------------------------------------------------------[0m
+8   gcse.src = ([91mdocument.location[0m.protocol == 'https:' ? 'https:' : 'http:') +
+[91m------------------------------------------------------------[0m
+[97m[~][0m Parsing home/section/exam/17056                  [0m[97m[~][0m Parsing home/faculties                           [0m[97m[~][0m Parsing home/section/exam/17054                  [0m[97m[~][0m Parsing home/section/exam/17078                  [0m[97m[~][0m Parsing home/section/exam/17077                  [0m[97m[~][0m Parsing home/section/exam/17064                  [0m[97m[~][0m Parsing home/section/exam/11676                  [0m[97m[~][0m Parsing home/section/exam/17076                  [0m[97m[~][0m Parsing home/section/exam/17073                  [0m[97m[~][0m Parsing home/section/exam/17040                  [0m[97m[~][0m Parsing home/section/exam/17031                  [0m[97m[~][0m Parsing /home/more/4                             [0m[97m[~][0m Parsing careers/                                 [0m[97m[~][0m Parsing program                                  [0m[97m[~][0m Parsing ge/detail/List-of-PhD-faculty-in-PU.html [0m[97m[~][0m Parsing home/section/exam/17059                  [0m[97m[~][0m Parsing ations/contents/Student-Information.html [0m[97m[~][0m Parsing page/show/community.html                 [0m[97m[~][0m Parsing home/section/exam/17052                  [0m[91m------------------------------------------------------------[0m
+[92m[+][0m Vulnerable component: jquery v2.2.4 [0m
+[93m[!][0m Component location: https://pu.edu.pk/puac/js/jquery.min.js [0m
+[93m[!][0m Total vulnerabilities: 3 [0m
+[93m[!][0m [92mSummary:[0m parseHTML() executes scripts in event handlers [0m
+[93m[!][0m Severity: medium [0m
+[93m[!][0m CVE: CVE-2015-9251 [0m
+[93m[!][0m [92mSummary:[0m jQuery before 3.4.0, as used in Drupal, Backdrop CMS, and other products, mishandles jQuery.extend(true, {}, ...) because of Object.prototype pollution [0m
+[93m[!][0m Severity: low [0m
+[93m[!][0m CVE: CVE-2019-11358 [0m
+[93m[!][0m [92mSummary:[0m 3rd party CORS request may execute [0m
+[93m[!][0m Severity: medium [0m
+[93m[!][0m CVE: CVE-2015-9251 [0m
+[91m------------------------------------------------------------[0m
+[97m[~][0m Parsing home/section/exam/17061                  [0m[97m[~][0m Parsing home/section/exam/17033                  [0m[97m[~][0m Parsing page/show/annual-reports.html            [0m[97m[~][0m Parsing home/section/exam/17058                  [0m[97m[~][0m Parsing show/Sample-Paper-Online-Assessment.html [0m[97m[~][0m Parsing age/detail/HEC-Approved-Supervisors.html [0m[97m[~][0m Parsing home/section/exam/17029                  [0m[97m[~][0m Parsing home/section/exam/17067                  [0m[97m[~][0m Parsing home/section/exam/17045                  [0m[97m[~][0m Parsing home/books/                              [0m[97m[~][0m Parsing home/section/exam/17063                  [0m[97m[~][0m Parsing page/show/Campuses.html                  [0m[97m[~][0m Parsing page/downloads/exam_admission_form.html  [0m[97m[~][0m Parsing home/section/exam/17065                  [0m[97m[~][0m Parsing page/puglance/Budget.html                [0m[97m[~][0m Parsing home/section/exam/17053                  [0m[97m[~][0m Parsing page/show/bank_branches.html             [0m[97m[~][0m Parsing home/news_events                         [0m[97m[~][0m Parsing home/section/exam/17047                  [0m[97m[~][0m Parsing                                          [0m[97m[~][0m Parsing home/tendernotices                       [0m[97m[~][0m Parsing page/it_centre/it-centre.html            [0m[97m[~][0m Parsing home/section/exam/17046                  [0m[92m[+][0m Potentially vulnerable objects found at https://pu.edu.pk/club/ [0m
+[91m------------------------------------------------------------[0m
+1   [91mdocument.write[0m(new Date().getFullYear());
+[91m------------------------------------------------------------[0m
+[93m[!][0m Progress: 10/107 [0m[93m[!][0m Progress: 20/107 [0m[93m[!][0m Progress: 30/107 [0m[93m[!][0m Progress: 40/107 [0m[93m[!][0m Progress: 50/107 [0m[93m[!][0m Progress: 60/107 [0m[93m[!][0m Progress: 70/107 [0m[93m[!][0m Progress: 80/107 [0m[93m[!][0m Progress: 90/107 [0m[93m[!][0m Progress: 100/107 [0m[!!] Unable to connect to the target. [0m
+[!!] Unable to connect to the target. [0m
+[!!] Unable to connect to the target. [0m
+[93m[!][0m Progress: 107/107 [0m
+</pre></details>
+        </div>
+        
+        <div class="card">
+            <h2 class="tool-name">sqlmap Results</h2>
+            <p>Status: Completed | Vulnerable: <span style="color: #00ff88">False</span></p>
+            
+            
+            <details><summary>View Raw Engine Output</summary><pre>        ___
+       __H__
+ ___ ___[(]_____ ___ ___  {1.10.4.4#dev}
+|_ -| . [,]     | .'| . |
+|___|_  [,]_|_|_|__,|  _|
+      |_|V...       |_|   https://sqlmap.org
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 14:56:49 /2026-04-27/
+
+[14:56:49] [WARNING] using 'E:\WebSecureX.(2)\python-backend\reports\d25675d3-669d-4a31-9693-ea3f4efed272\sqlmap' as the output directory
+[14:56:49] [INFO] testing connection to the target URL
+you have not declared cookie(s), while server wants to set its own ('PHPSESSID=g4dqhun67ih...gatm1bnak5'). Do you want to use those [Y/n] Y
+[14:56:49] [INFO] searching for forms
+[14:56:50] [CRITICAL] there were no forms found at the given target URL
+
+[*] ending @ 14:56:50 /2026-04-27/
+
+</pre></details>
+        </div>
+        
+        <div class="card">
+            <h2 class="tool-name">NoSQLMap Results</h2>
+            <p>Status: Completed | Vulnerable: <span style="color: #00ff88">False</span></p>
+            
+            
+            <details><summary>View Raw Engine Output</summary><pre>module 'pexpect' has no attribute 'spawn'</pre></details>
+        </div>
+        <footer><p style='text-align:center; color:#3d5a73; font-size: 10px;'>Generated by WebSecureX Pro Engine | FYP Project</p></footer></body></html>

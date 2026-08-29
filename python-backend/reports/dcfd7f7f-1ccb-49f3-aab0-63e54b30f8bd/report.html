@@ -1,0 +1,158 @@
+
+    <html><head><style>
+        body { background: #050a0e; color: #e8f4fd; font-family: 'JetBrains Mono', monospace; padding: 40px; line-height: 1.6; }
+        .card { background: #0d1f35; border: 1px solid rgba(0, 212, 255, 0.2); padding: 25px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 0 15px rgba(0,0,0,0.5); }
+        .risk-badge { padding: 5px 15px; border-radius: 4px; font-weight: bold; text-transform: uppercase; border: 1px solid; }
+        .risk-critical { color: #ff2d55; border-color: #ff2d55; background: rgba(255,45,85,0.1); }
+        .risk-high { color: #ff8c00; border-color: #ff8c00; }
+        .risk-medium { color: #ffcc00; border-color: #ffcc00; }
+        .risk-safe { color: #00ff88; border-color: #00ff88; }
+        .score-circle { width: 80px; height: 80px; border-radius: 50%; border: 4px solid #00d4ff; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; margin-bottom: 10px; }
+        h1 { font-family: 'Orbitron', sans-serif; color: #00d4ff; letter-spacing: 2px; }
+        h2 { color: #00d4ff; font-family: 'Orbitron', sans-serif; border-bottom: 1px solid rgba(0,212,255,0.1); padding-bottom: 10px; }
+        .tool-name { color: #00ff88; font-family: 'Orbitron', sans-serif; }
+        .humanized { background: rgba(0, 212, 255, 0.05); border-left: 4px solid #00d4ff; padding: 15px; font-style: italic; margin-bottom: 20px; }
+        pre { background: #020d1a; padding: 15px; border-radius: 8px; color: #7a9ab8; font-size: 11px; overflow-x: auto; max-height: 400px; }
+        details { margin-top: 15px; border: 1px solid rgba(255,255,255,0.05); border-radius: 5px; }
+        summary { padding: 10px; cursor: pointer; color: #00d4ff; font-weight: bold; }
+    </style></head><body>
+        <h1>WEBSECUREX VULNERABILITY AUDIT</h1>
+        
+        <div class="card" style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <p>Target: <strong>https://estimators.us/</strong></p>
+                <p>Risk Level: <span class="risk-badge risk-error">Error</span></p>
+                <p>Detected DB: <strong style="color: #00d4ff">SQL</strong></p>
+                <p>SSL Status: <span style="color: #00ff88; font-weight: bold;">[ APPROVED SSL CERTIFICATION ]</span></p>
+            </div>
+            <div style="text-align: center;">
+                <div class="score-circle">0%</div>
+                <div style="font-size: 12px; color: #7a9ab8;">OVERALL SAFETY</div>
+            </div>
+        </div>
+
+        <h2>I. EXECUTIVE SUMMARY (HUMANIZED)</h2>
+    
+        <div class="card">
+            <div style="display: flex; justify-content: space-between;">
+                <h3 class="tool-name">sqlmap Audit</h3>
+                <div style="color: #00ff88; font-weight: bold;">Score: 0/10</div>
+            </div>
+            <div class="humanized">
+                <strong>Analysis:</strong> Scan timed out. Try Quick mode.
+            </div>
+            <div style="background: rgba(0, 255, 136, 0.05); border-left: 4px solid #00ff88; padding: 15px; margin-top: 10px;">
+                <strong>Recommended Fixes:</strong> Maintain current security practices and regular audits.
+            </div>
+        </div>
+        
+        <div class="card">
+            <div style="display: flex; justify-content: space-between;">
+                <h3 class="tool-name">xsstrike Audit</h3>
+                <div style="color: #00ff88; font-weight: bold;">Score: 0/10</div>
+            </div>
+            <div class="humanized">
+                <strong>Analysis:</strong> XSS scan timed out. Try Quick mode.
+            </div>
+            <div style="background: rgba(0, 255, 136, 0.05); border-left: 4px solid #00ff88; padding: 15px; margin-top: 10px;">
+                <strong>Recommended Fixes:</strong> Maintain current security practices and regular audits.
+            </div>
+        </div>
+        
+        <div class="card">
+            <div style="display: flex; justify-content: space-between;">
+                <h3 class="tool-name">abuseipdb Audit</h3>
+                <div style="color: #00ff88; font-weight: bold;">Score: 10/10</div>
+            </div>
+            <div class="humanized">
+                <strong>Analysis:</strong> CLEAN IP REPUTATION: The IP address (77.37.115.33) is clean. It has an abuse confidence score of 0% and is not blacklisted in the AbuseIPDB database.
+            </div>
+            <div style="background: rgba(0, 255, 136, 0.05); border-left: 4px solid #00ff88; padding: 15px; margin-top: 10px;">
+                <strong>Recommended Fixes:</strong> Maintain current security practices and regular audits.
+            </div>
+        </div>
+        
+        <div class="card">
+            <div style="display: flex; justify-content: space-between;">
+                <h3 class="tool-name">ssl Audit</h3>
+                <div style="color: #00ff88; font-weight: bold;">Score: 10/10</div>
+            </div>
+            <div class="humanized">
+                <strong>Analysis:</strong> SSL Certificate is VALID. 
+            </div>
+            <div style="background: rgba(0, 255, 136, 0.05); border-left: 4px solid #00ff88; padding: 15px; margin-top: 10px;">
+                <strong>Recommended Fixes:</strong> Maintain current security practices and regular audits.
+            </div>
+        </div>
+        
+        <div class="card">
+            <div style="display: flex; justify-content: space-between;">
+                <h3 class="tool-name">breach_checker Audit</h3>
+                <div style="color: #00ff88; font-weight: bold;">Score: 10/10</div>
+            </div>
+            <div class="humanized">
+                <strong>Analysis:</strong> Audit complete. No high-risk vulnerabilities were enlisted in this session.
+            </div>
+            <div style="background: rgba(0, 255, 136, 0.05); border-left: 4px solid #00ff88; padding: 15px; margin-top: 10px;">
+                <strong>Recommended Fixes:</strong> Maintain current security practices and regular audits.
+            </div>
+        </div>
+        <h2>II. TECHNICAL ENGINE REPORTS (RAW)</h2>
+        <div class="card">
+            <h3 class="tool-name">sqlmap Log</h3>
+            <p>Verdict: <span style="color: #00ff88">SECURE</span></p>
+            <details open>
+                <summary>Engine Output</summary>
+                <pre>Timeout</pre>
+            </details>
+        </div>
+        
+        <div class="card">
+            <h3 class="tool-name">xsstrike Log</h3>
+            <p>Verdict: <span style="color: #00ff88">SECURE</span></p>
+            <details open>
+                <summary>Engine Output</summary>
+                <pre>Timeout</pre>
+            </details>
+        </div>
+        
+        <div class="card">
+            <h3 class="tool-name">abuseipdb Log</h3>
+            <p>Verdict: <span style="color: #00ff88">SECURE</span></p>
+            <details open>
+                <summary>Engine Output</summary>
+                <pre>IP: 77.37.115.33
+Score: 0%
+Reports: 0</pre>
+            </details>
+        </div>
+        
+        <div class="card">
+            <h3 class="tool-name">ssl Log</h3>
+            <p>Verdict: <span style="color: #00ff88">SECURE</span></p>
+            <details open>
+                <summary>Engine Output</summary>
+                <pre>Domain: estimators.us
+Expiry: Jul 31 04:44:57 2026 GMT
+Self-Signed: False</pre>
+            </details>
+        </div>
+        
+        <div class="card">
+            <h3 class="tool-name">breach_checker Log</h3>
+            <p>Verdict: <span style="color: #00ff88">SECURE</span></p>
+            <details open>
+                <summary>Engine Output</summary>
+                <pre>Domain: estimators.us
+Breach Count: 0
+Emails: None</pre>
+            </details>
+        </div>
+        
+        <div class="card" style="text-align: center; border-color: #00ff88; background: rgba(0,255,136,0.05);">
+            <h2 style="color: #00ff88;">WANT TO SECURE YOUR WEBSITE?</h2>
+            <p>Our experts can help you patch these vulnerabilities and harden your infrastructure.</p>
+            <a href="mailto:support@websecurex.com" class="risk-badge risk-safe" style="text-decoration: none; display: inline-block; padding: 15px 30px; font-size: 1.2rem;">[ CONTACT OUR SECURITY TEAM ]</a>
+        </div>
+        <footer><p style='text-align:center; color:#3d5a73; font-size: 10px;'>Generated by WebSecureX Pro Engine | Advanced Vulnerability Enlisting System</p></footer></body></html>
+    

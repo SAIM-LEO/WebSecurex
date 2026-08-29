@@ -1,0 +1,16 @@
+fastapi
+uvicorn[standard]
+pydantic
+sqlalchemy
+aiosqlite
+requests
+python-whois
+dnspython
+jinja2
+weasyprint
+psutil
+pexpect
+python-dotenv
+httpx
+beautifulsoup4
+lxml

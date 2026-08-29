@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+    apache:
+        container_name: apache
+        build: ./docker/apache
+        links:
+            - php
+        ports:
+            - "${NOSQLMAP_VULN_APPS_APACHE_PORT:-8080}:80"
+        volumes:
+            - ./src:/usr/local/apache2/htdocs
+    php:
+        container_name: php
+        build: ./docker/php
+        ports:
+            - "${NOSQLMAP_VULN_APPS_PHP_PORT:-9000}:9000"
+        volumes:
+            - ./src:/usr/local/apache2/htdocs
+        working_dir: /usr/local/apache2/htdocs
+    mongo:
+        container_name: mongo
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: prisma
+        build: ./docker/mongo
+        ports:
+            - "${NOSQLMAP_VULN_APPS_MONGO_PORT:-27017}:27017"

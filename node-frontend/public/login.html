@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | WebSecureX</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/hacker-mode.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body class="auth-page">
+    <div class="auth-container fadeInUp">
+        <div class="auth-card neon-border">
+            <h1 class="glitch" data-text="WEBSECUREX">WEBSECUREX</h1>
+            <p class="tagline">> SECURE ACCESS PORTAL</p>
+            
+            <form id="login-form">
+                <div class="input-group">
+                    <label>📧 EMAIL ADDRESS</label>
+                    <input type="email" id="email" placeholder="enter your email" required>
+                </div>
+                <div class="input-group">
+                    <label>🔒 PASSWORD</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" placeholder="••••••••" required>
+                        <button type="button" class="toggle-password">👁</button>
+                    </div>
+                </div>
+                <div id="error-msg" class="error-text"></div>
+                <button type="submit" class="btn btn-primary full-width">LOG IN ➔</button>
+            </form>
+            
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="watermark-shield"></div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

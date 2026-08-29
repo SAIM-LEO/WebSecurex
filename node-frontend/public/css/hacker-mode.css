@@ -1,0 +1,256 @@
+/* Hacker Mode Theme Overlay */
+body.hacker-mode {
+    background: #000000 !important;
+    color: #00FF00 !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Matrix Rain Effect */
+body.hacker-mode::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 255, 0, 0.05) 50%, transparent 50%);
+    background-size: 100% 4px;
+    z-index: 9998;
+    pointer-events: none;
+    animation: scanlines 0.2s linear infinite;
+}
+
+@keyframes scanlines {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(4px); }
+}
+
+body.hacker-mode .container, 
+body.hacker-mode nav {
+    position: relative;
+    z-index: 1;
+}
+
+/* Green Matrix Colors */
+body.hacker-mode .text-primary, 
+body.hacker-mode h1, 
+body.hacker-mode h2, 
+body.hacker-mode h3,
+body.hacker-mode p,
+body.hacker-mode span:not(.terminal-time),
+body.hacker-mode a:not(.btn) {
+    color: #00FF00 !important;
+    text-shadow: 0 0 5px #00FF00;
+}
+
+body.hacker-mode .text-secondary {
+    color: #00CC00 !important;
+}
+
+/* Cards & Panels */
+body.hacker-mode .card {
+    background: #000000 !important;
+    border: 1px solid #00FF00 !important;
+    box-shadow: 0 0 10px #00FF00 !important;
+}
+
+body.hacker-mode .neon-border {
+    border: 1px solid #00FF00 !important;
+    box-shadow: 0 0 15px #00FF00 !important;
+}
+
+/* Inputs & Buttons */
+body.hacker-mode input, 
+body.hacker-mode select {
+    background: #000000 !important;
+    color: #00FF00 !important;
+    border: 1px solid #00FF00 !important;
+}
+
+body.hacker-mode input:focus {
+    box-shadow: 0 0 15px #00FF00 !important;
+}
+
+body.hacker-mode .btn {
+    background: #000000 !important;
+    color: #00FF00 !important;
+    border: 1px solid #00FF00 !important;
+    box-shadow: 0 0 5px #00FF00 !important;
+}
+
+body.hacker-mode .btn:hover {
+    box-shadow: 0 0 15px #00FF00 !important;
+    transform: scale(1.05);
+}
+
+body.hacker-mode .btn-primary {
+    background: #003300 !important;
+}
+
+/* Status Colors in Hacker Mode */
+body.hacker-mode .risk-safe,
+body.hacker-mode .success-text {
+    color: #00FF00 !important;
+    border-color: #00FF00 !important;
+    box-shadow: 0 0 10px #00FF00 !important;
+    background: rgba(0, 255, 0, 0.1) !important;
+}
+
+body.hacker-mode .risk-critical,
+body.hacker-mode .risk-high,
+body.hacker-mode .error-text {
+    color: #FF0000 !important;
+    border-color: #FF0000 !important;
+    box-shadow: 0 0 10px #FF0000 !important;
+    background: rgba(255, 0, 0, 0.1) !important;
+}
+
+body.hacker-mode .risk-medium,
+body.hacker-mode .risk-suspicious {
+    color: #FF6600 !important;
+    border-color: #FF6600 !important;
+    box-shadow: 0 0 10px #FF6600 !important;
+    background: rgba(255, 102, 0, 0.1) !important;
+}
+
+body.hacker-mode .phase.complete .dot { background: #00FF00 !important; box-shadow: 0 0 15px #00FF00 !important; }
+body.hacker-mode .phase.complete span { color: #00FF00 !important; }
+body.hacker-mode .phase.failed .dot { background: #FF0000 !important; box-shadow: 0 0 15px #FF0000 !important; }
+body.hacker-mode .phase.failed span { color: #FF0000 !important; }
+
+/* Power Button Pulse */
+@keyframes pulse-green {
+    0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(0, 255, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
+}
+
+.power-btn.on {
+    border-color: #00FF00 !important;
+    color: #00FF00 !important;
+    box-shadow: 0 0 15px #00FF00 !important;
+    animation: pulse-green 2s infinite !important;
+}
+
+/* Scrollbar */
+body.hacker-mode::-webkit-scrollbar { width: 8px; }
+body.hacker-mode::-webkit-scrollbar-track { background: #000; }
+body.hacker-mode::-webkit-scrollbar-thumb { background: #00FF00; border-radius: 4px; }
+
+/* Navbar Slider */
+.hacker-toggle-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 20px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #333;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px; width: 14px;
+    left: 3px; bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider { background-color: #00FF00; box-shadow: 0 0 10px #00FF00; }
+input:checked + .slider:before { transform: translateX(20px); }
+
+/* Scan Level Buttons */
+.level-btn {
+    padding: 5px 15px !important;
+    font-size: 0.7rem !important;
+    border-radius: 20px !important;
+    background: transparent !important;
+    border: 1px solid #555 !important;
+    color: #aaa !important;
+}
+
+.level-btn.active {
+    border-color: var(--accent-blue) !important;
+    color: var(--accent-blue) !important;
+    box-shadow: 0 0 10px var(--accent-blue);
+}
+
+body.hacker-mode .level-btn.active {
+    border-color: #00FF00 !important;
+    color: #00FF00 !important;
+    box-shadow: 0 0 10px #00FF00 !important;
+}
+
+.divider {
+    width: 1px;
+    height: 25px;
+    background: rgba(255,255,255,0.1);
+    margin: 0 10px;
+}
+
+/* Terminal Styles */
+#terminal-container {
+    margin-top: 20px;
+    background: #000000;
+    border: 1px solid #00FF00;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+}
+
+.terminal-header {
+    background: #111;
+    color: #00FF00;
+    padding: 8px 15px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #00FF00;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.terminal {
+    height: 300px;
+    overflow-y: auto;
+    padding: 15px;
+    background: #000000 !important;
+    color: #00FF00 !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.terminal-line {
+    margin-bottom: 4px;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.blinking-cursor {
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+}

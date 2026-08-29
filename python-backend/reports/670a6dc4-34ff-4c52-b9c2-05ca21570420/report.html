@@ -1,0 +1,64 @@
+
+    <html><head><style>
+        body { background: #0a0f1a; color: #00ff88; font-family: 'JetBrains Mono', monospace; padding: 40px; }
+        .card { background: #0d1f35; border: 1px solid #00d4ff; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+        .risk-safe { color: #ff2d55; border: 1px solid #ff2d55; padding: 5px 15px; border-radius: 20px; }
+        h1 { font-family: 'Orbitron', sans-serif; color: #00d4ff; }
+        details { background: #020d1a; padding: 10px; border-radius: 5px; cursor: pointer; }
+        pre { white-space: pre-wrap; color: #7a9ab8; font-size: 12px; }
+    </style></head><body>
+        <h1>Audit Report: https://www.appsecmaster.net/labs/sql-injection</h1>
+        <div class="card">
+            <h3>Overall Risk: <span class="risk-safe">Safe</span></h3>
+            <p>Vulnerabilities Found: 0</p>
+            <p>Scan ID: 670a6dc4-34ff-4c52-b9c2-05ca21570420</p>
+        </div>
+    
+        <div class="card">
+            <h2>XSStrike Results</h2>
+            <p>Status: error | Vulnerable: False</p>
+            <details><summary>View Raw Output</summary><pre>'utf-8' codec can't decode byte 0x97 in position 10489: invalid start byte</pre></details>
+        </div>
+        
+        <div class="card">
+            <h2>sqlmap Results</h2>
+            <p>Status: completed | Vulnerable: False</p>
+            <details><summary>View Raw Output</summary><pre>        ___
+       __H__
+ ___ ___[)]_____ ___ ___  {1.10.4.4#dev}
+|_ -| . [)]     | .'| . |
+|___|_  [']_|_|_|__,|  _|
+      |_|V...       |_|   https://sqlmap.org
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 18:14:18 /2026-04-24/
+
+[18:14:18] [WARNING] using 'E:\WebSecureX.(2)\reports\670a6dc4-34ff-4c52-b9c2-05ca21570420\sqlmap' as the output directory
+[18:14:18] [INFO] testing connection to the target URL
+[18:14:19] [WARNING] potential permission problems detected ('Access denied')
+[18:14:19] [WARNING] the web server responded with an HTTP error code (403) which could interfere with the results of the tests
+[18:14:19] [INFO] searching for forms
+[1/1] Form:
+POST https://sparrow.cloudflare.com/api/v1/event
+POST data: JSON.stringify%28a
+do you want to test this form? [Y/n/q] 
+> Y
+Edit POST data [default: JSON.stringify%28a]: JSON.stringify(a
+[18:14:22] [INFO] using 'E:\WebSecureX.(2)\reports\670a6dc4-34ff-4c52-b9c2-05ca21570420\sqlmap\results-04242026_0614pm.csv' as the CSV results file in multiple targets mode
+[18:14:22] [ERROR] not authorized, try to provide right HTTP authentication type and valid credentials (401). If this is intended, try to rerun by providing a valid value for option '--ignore-code', skipping to the next target
+[18:14:22] [WARNING] HTTP error codes detected during run:
+401 (Unauthorized) - 1 times
+[18:14:22] [INFO] you can find results of scanning in multiple targets mode inside the CSV file 'E:\WebSecureX.(2)\reports\670a6dc4-34ff-4c52-b9c2-05ca21570420\sqlmap\results-04242026_0614pm.csv'
+
+[*] ending @ 18:14:22 /2026-04-24/
+
+</pre></details>
+        </div>
+        
+        <div class="card">
+            <h2>NoSQLMap Results</h2>
+            <p>Status: error | Vulnerable: False</p>
+            <details><summary>View Raw Output</summary><pre>module 'pexpect' has no attribute 'spawn'</pre></details>
+        </div>
+        </body></html>

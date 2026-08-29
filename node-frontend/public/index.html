@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scanner | WebSecureX</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/hacker-mode.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="nav-logo">WEBSECUREX</a>
+        <div class="nav-links">
+            <a href="index.html" class="active"><i class="fas fa-search-shield"></i> Scanner</a>
+            <a href="history.html"><i class="fas fa-history"></i> History</a>
+            <a href="scheduler.html"><i class="fas fa-clock"></i> Scheduler</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+            <div class="status-indicator">
+                <span class="status-dot"></span>
+            </div>
+        </div>
+        <div class="nav-user">
+            <div class="hacker-toggle-wrapper">
+                <i class="fas fa-terminal" style="font-size: 0.8rem; color: #7a9ab8;"></i>
+                <span style="font-size: 0.7rem; color: #7a9ab8; margin-right: 5px;">Hacker Mode</span>
+                <label class="switch">
+                    <input type="checkbox" id="hacker-mode-slider">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <button class="user-profile-btn" id="settings-trigger">
+                <i class="fas fa-user-shield"></i>
+                <span id="nav-username">LEO</span>
+            </button>
+            <button class="logout-btn" id="logout-btn">LOGOUT</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="hero fadeInUp">
+            <h1>WEBSECUREX</h1>
+            <p>Advanced Website Security Auditor</p>
+        </header>
+
+        <section id="scan-form" class="card neon-border fadeInUp">
+            <div class="scan-box">
+                <input type="text" id="target-url" placeholder="https://example.com" class="terminal-input">
+                <button class="btn btn-primary" id="btn-scan-all">SCAN ALL</button>
+            </div>
+            
+            <!-- Final High-Fidelity Controls Row with Top Labels & Dividers -->
+            <div class="controls-row">
+                <div class="control-group">
+                    <span class="group-label">AUDIT DEPTH</span>
+                    <div class="level-pills">
+                        <button class="btn level-btn active" id="btn-level-quick" data-level="quick">⚡ QUICK</button>
+                        <button class="btn level-btn" id="btn-level-normal" data-level="normal">⚡ NORMAL</button>
+                        <button class="btn level-btn" id="btn-level-deep" data-level="deep">⚡ DEEP</button>
+                    </div>
+                </div>
+                
+                <div class="v-divider"></div>
+
+                <div class="control-group">
+                    <span class="group-label">MODE</span>
+                    <button class="btn power-btn" id="hacker-mode-power" title="Toggle Hacker Mode">
+                        <i class="fas fa-power-off"></i>
+                    </button>
+                </div>
+
+                <div class="v-divider"></div>
+
+                <div class="control-group">
+                    <span class="group-label">SPECIALIZED ENGINES</span>
+                    <div class="engine-boxes">
+                        <button class="btn engine-btn" id="btn-scan-xss">XSS</button>
+                        <button class="btn engine-btn" id="btn-scan-sqli">SQLI</button>
+                        <button class="btn engine-btn" id="btn-scan-ssl">SSL</button>
+                        <button class="btn engine-btn" id="btn-scan-ip">IP</button>
+                    </div>
+                </div>
+
+                <div class="v-divider"></div>
+
+                <div class="control-group">
+                    <span class="group-label">DATABASE</span>
+                    <select id="db-override" class="btn db-select-themed">
+                        <option value="">AUTO-DB</option>
+                        <option value="sql">SQL</option>
+                        <option value="nosql">NOSQL</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Progress Section -->
+        <section id="progress-section" class="card fadeInUp" style="display: none; border-color: var(--accent-cyan);">
+            <!-- Phase Steps Updated -->
+            <div class="phase-steps">
+                <div class="phase" id="phase-init"><div class="dot"></div><span>INITIALIZING</span></div>
+                <div class="phase" id="phase-sqli"><div class="dot"></div><span>SQL INJECTION</span></div>
+                <div class="phase" id="phase-xss"><div class="dot"></div><span>XSS SCAN</span></div>
+                <div class="phase" id="phase-ip"><div class="dot"></div><span>IP REPUTATION</span></div>
+                <div class="phase" id="phase-ssl"><div class="dot"></div><span>SSL CERTIFICATE</span></div>
+                <div class="phase" id="phase-report"><div class="dot"></div><span>COMPLETE</span></div>
+            </div>
+
+            <div class="progress-bar-wrapper">
+                <div class="progress-fill" id="progress-bar"></div>
+            </div>
+            <p id="progress-text" style="font-size: 0.8rem; margin-bottom: 20px; color: var(--text-secondary);">0% - Initializing engines...</p>
+
+            
+            <div id="terminal-container" style="display: none;">
+                <div class="terminal-header">
+                    <span>LIVE ENGINE TERMINAL</span>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <button id="btn-stop-scan" class="btn" style="padding: 4px 12px; font-size: 0.75rem; color: #fff; border: 1px solid #ff2d55; background: #ff2d55; border-radius: 4px; cursor: pointer; font-weight: bold;">ABORT & RESET SCAN</button>
+                        <span class="blinking-cursor">_</span>
+                    </div>
+                </div>
+                <div class="terminal" id="terminal-log"></div>
+            </div>
+        </section>
+
+        <!-- Result Preview Section -->
+        <section id="result-preview" style="display: none;" class="fadeInUp">
+            <div id="risk-banner-container" class="card neon-border" style="margin-bottom: 25px; padding: 20px; border-color: var(--accent-cyan);">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                    <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                        <div id="risk-banner" class="risk-badge" style="padding: 10px 20px; font-size: 0.95rem; letter-spacing: 1px; margin: 0;">RISK: UNKNOWN</div>
+                        <div id="overall-score-badge" style="background: rgba(0, 255, 136, 0.1); border: 1px solid var(--accent-green); color: var(--accent-green); padding: 9px 18px; border-radius: 4px; font-weight: bold; font-family: 'Orbitron', monospace; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-shield-alt"></i> TOTAL SCORE: <span id="overall-score-val">100</span>/100
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                        <a id="btn-show-full-report" href="#" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; padding: 10px 18px; text-decoration: none;">
+                            <i class="fas fa-file-invoice"></i> SHOW FULL REPORT
+                        </a>
+                        <a id="btn-download-html-report" href="#" target="_blank" class="btn btn-outline" style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; padding: 10px 18px; text-decoration: none;">
+                            <i class="fas fa-download"></i> EXPORT HTML REPORT
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="result-cards" id="result-cards"></div>
+        </section>
+
+        <!-- Classic Feature Cards -->
+        <div class="result-cards fadeInUp" id="feature-info" style="margin-top: 40px;">
+            <div class="card">
+                <h3 style="color: var(--accent-green);">XSS AUDIT</h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">Powered by XSStrike. Deep crawler and context-aware payload injection.</p>
+            </div>
+            <div class="card">
+                <h3 style="color: var(--accent-cyan);">SQL INJECTION</h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">Powered by sqlmap. Detects DBMS and performs advanced injection tests.</p>
+            </div>
+            <div class="card">
+                <h3 style="color: var(--accent-orange);">NOSQL AUDIT</h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">Smart-routing logic: NoSQL tests only run if the target DB is detected as NoSQL.</p>
+            </div>
+        </div>
+
+        <!-- Contact Us Section -->
+        <section id="contact-us" class="card neon-border fadeInUp" style="margin-top: 40px; margin-bottom: 20px; border-color: var(--accent-cyan);">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h2 style="color: var(--accent-cyan); font-family: 'Orbitron', sans-serif;">Secure Your Website With Us</h2>
+                <p style="color: var(--text-secondary); max-width: 600px; margin: 15px auto; line-height: 1.6;">Found vulnerabilities on your website?<br>Our security experts are here to help you fix them. Get in touch and we will make sure your website is fully protected.</p>
+            </div>
+            
+            <form id="contact-form" onsubmit="event.preventDefault(); document.getElementById('contact-success').style.display = 'block'; this.reset();" style="max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px;">
+                <input type="text" placeholder="Name" required class="terminal-input" style="width: 100%;">
+                <input type="email" placeholder="Email" required class="terminal-input" style="width: 100%;">
+                <input type="url" placeholder="Website URL" required class="terminal-input" style="width: 100%;">
+                <textarea placeholder="Describe your security concern..." required class="terminal-input" style="width: 100%; min-height: 120px; resize: vertical; padding: 15px; font-family: 'JetBrains Mono', monospace;"></textarea>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Get Help Now</button>
+                <div id="contact-success" style="display: none; text-align: center; color: var(--accent-green); padding: 15px; background: rgba(0,255,136,0.05); border: 1px solid var(--accent-green); border-radius: 4px; margin-top: 10px;">
+                    Thank you! We will get back to you within 24 hours.
+                </div>
+            </form>
+
+            <div style="display: flex; justify-content: center; gap: 30px; margin-top: 30px; flex-wrap: wrap; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+                <div><i class="fas fa-envelope" style="color: var(--accent-cyan); margin-right: 8px;"></i> support@websecurex.com</div>
+                <div><i class="fas fa-shield-alt" style="color: var(--accent-green); margin-right: 8px;"></i> We respond within 24 hours</div>
+                <div><i class="fas fa-lock" style="color: var(--accent-orange); margin-right: 8px;"></i> All information is kept confidential</div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>WEBSECUREX FYP PROJECT | Powered by XSStrike, sqlmap, NoSQLMap</p>
+    </footer>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content card neon-border fadeInUp">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
+                <h2 style="color: var(--accent-cyan); font-family: 'Orbitron', sans-serif; margin: 0; font-size: 1.1rem;">USER SETTINGS</h2>
+                <button id="close-settings" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1.3rem;">&times;</button>
+            </div>
+            
+            <div class="settings-section">
+                <h3 style="color: var(--accent-green); font-size: 0.75rem; margin-bottom: 10px; letter-spacing: 1px;">WEBSITE CONTROLS</h3>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,212,255,0.05); padding: 8px 12px; border-radius: 4px; border: 1px solid rgba(0,212,255,0.1);">
+                        <span style="font-size: 0.7rem; color: var(--text-secondary);">Save Scan History Automatically</span>
+                        <label class="switch" style="transform: scale(0.85);"><input type="checkbox" checked><span class="slider"></span></label>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,212,255,0.05); padding: 8px 12px; border-radius: 4px; border: 1px solid rgba(0,212,255,0.1);">
+                        <span style="font-size: 0.7rem; color: var(--text-secondary);">Enable Real-time Threat Alerts</span>
+                        <label class="switch" style="transform: scale(0.85);"><input type="checkbox" checked><span class="slider"></span></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section" style="margin-top: 15px; border-top: 1px solid rgba(0,212,255,0.1); padding-top: 15px;">
+                <h3 style="color: var(--accent-orange); font-size: 0.75rem; margin-bottom: 10px; letter-spacing: 1px;">SECURITY: CHANGE PASSWORD</h3>
+                <form id="change-password-form" style="display: flex; flex-direction: column; gap: 8px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <input type="password" placeholder="Current" class="terminal-input" required style="font-size: 0.7rem; height: 32px;">
+                        <input type="password" placeholder="New" class="terminal-input" required style="font-size: 0.7rem; height: 32px;">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="height: 35px; font-size: 0.75rem;">UPDATE CREDENTIALS</button>
+                    <p id="password-status" style="font-size: 0.65rem; text-align: center; margin-top: 5px; display: none;"></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

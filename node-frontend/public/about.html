@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | WebSecureX</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/hacker-mode.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="nav-logo">WEBSECUREX</a>
+        <div class="nav-links">
+            <a href="index.html"><i class="fas fa-search-shield"></i> Scanner</a>
+            <a href="history.html"><i class="fas fa-history"></i> History</a>
+            <a href="scheduler.html"><i class="fas fa-clock"></i> Scheduler</a>
+            <a href="about.html" class="active"><i class="fas fa-info-circle"></i> About</a>
+            <div class="status-indicator">
+                <span class="status-dot"></span>
+            </div>
+        </div>
+        <div class="nav-user">
+            <div class="hacker-toggle-wrapper">
+                <i class="fas fa-terminal" style="font-size: 0.8rem; color: #7a9ab8;"></i>
+                <span style="font-size: 0.7rem; color: #7a9ab8; margin-right: 5px;">Hacker Mode</span>
+                <label class="switch">
+                    <input type="checkbox" id="hacker-mode-slider">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <button class="user-profile-btn" id="settings-trigger">
+                <i class="fas fa-user-shield"></i>
+                <span id="nav-username">LEO</span>
+            </button>
+            <button class="logout-btn" id="logout-btn">LOGOUT</button>
+        </div>
+    </nav>
+
+    <main style="padding: 4rem; max-width: 1000px; margin: 0 auto;">
+        <header style="text-align: center; margin-bottom: 5rem;">
+            <h1 style="font-size: 3.5rem; margin-bottom: 1rem;">ABOUT & DOCUMENTATION</h1>
+            <p style="color: var(--accent-cyan); font-weight: 700;">Final Year Project (FYP) — Automated Web Security Analysis Platform</p>
+            <div style="margin-top: 2rem; color: var(--text-muted); font-size: 0.9rem;">
+                Developed for the Bachelor of Science in Information Technology (BSIT)
+            </div>
+        </header>
+
+        <section class="card neon-border">
+            <h3 style="color: var(--accent-green); margin-bottom: 1.5rem;">System Intelligence</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">WebSecureX is an automated DAST (Dynamic Application Security Testing) platform that orchestrates industry-standard security engines to detect critical web vulnerabilities.</p>
+            <p style="color: var(--text-secondary);">It is designed to simplify complex penetration testing workflows, providing developers and security students with a unified interface for vulnerability assessment.</p>
+        </section>
+
+        <!-- Getting Started -->
+        <section class="card neon-border" style="margin-top: 3rem;">
+            <h3 style="color: var(--accent-green); margin-bottom: 1.5rem;"><i class="fas fa-rocket"></i> Getting Started</h3>
+            <ol style="color: var(--text-secondary); padding-left: 20px; display: grid; gap: 15px;">
+                <li>Enter a target URL (e.g., <code>http://testphp.vulnweb.com</code>) in the scanner dashboard.</li>
+                <li>Select an <strong>Audit Depth</strong>:
+                    <ul>
+                        <li><strong>Quick</strong>: Rapid check for common flaws.</li>
+                        <li><strong>Normal</strong>: Balanced depth and speed.</li>
+                        <li><strong>Deep</strong>: Full-scale crawl and heavy payload testing.</li>
+                    </ul>
+                </li>
+                <li>Toggle <strong>Hacker Mode</strong> if you want to see the raw tool outputs in real-time.</li>
+                <li>Click <strong>SCAN ALL</strong> to begin the multi-phase audit.</li>
+            </ol>
+        </section>
+
+        <!-- Architecture -->
+        <section class="card neon-border" style="margin-top: 3rem;">
+            <h3 style="color: var(--accent-cyan); margin-bottom: 1.5rem;"><i class="fas fa-network-wired"></i> System Architecture</h3>
+            <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 8px; font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.8;">
+                <div style="color: var(--accent-green);">[ Frontend: React/JS ]</div>
+                <div style="margin-left: 20px;">⬇️ (REST API / SSE Streams)</div>
+                <div style="color: var(--accent-cyan);">[ Backend Proxy: Node.js/Express ]</div>
+                <div style="margin-left: 20px;">⬇️ (FastAPI Bridge)</div>
+                <div style="color: var(--accent-yellow);">[ Analysis Core: Python FastAPI ]</div>
+                <div style="margin-left: 40px;">➡️ [ sqlmap ] [ XSStrike ] [ SSL Audit ]</div>
+                <div style="margin-left: 20px;">⬇️ (Persistence)</div>
+                <div style="color: var(--accent-red);">[ Database: MongoDB ]</div>
+            </div>
+        </section>
+
+        <section style="margin: 5rem 0;">
+            <h3 style="text-align: center; margin-bottom: 3rem;">Integrated Engines</h3>
+            <div style="display: grid; gap: 2rem;">
+                <div class="card neon-border" style="display: flex; gap: 2rem; align-items: center;">
+                    <div style="font-size: 3rem;">⚡</div>
+                    <div>
+                        <h4 style="color: var(--accent-cyan); margin-bottom: 0.5rem;">XSStrike (XSS)</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.85rem;">Advanced XSS detection engine with multi-threaded crawling and context-aware payload generation. Capable of bypassing various WAFs and filters.</p>
+                        <p style="color: var(--text-muted); font-size: 0.75rem; margin-top: 10px;">⭐ 14.8K GitHub Stars | Python | GPL-3.0</p>
+                    </div>
+                </div>
+
+                <div class="card neon-border" style="display: flex; gap: 2rem; align-items: center;">
+                    <div style="font-size: 3rem;">💉</div>
+                    <div>
+                        <h4 style="color: var(--accent-cyan); margin-bottom: 0.5rem;">sqlmap (SQL Injection)</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.85rem;">The world's most powerful automated SQL injection tool. Fingerprints backend DBMS and tests all parameters with 6 injection techniques.</p>
+                        <p style="color: var(--text-muted); font-size: 0.75rem; margin-top: 10px;">⭐ 32K GitHub Stars | Python | GPL-2.0</p>
+                    </div>
+                </div>
+
+                <div class="card neon-border" style="display: flex; gap: 2rem; align-items: center;">
+                    <div style="font-size: 3rem;">🔥</div>
+                    <div>
+                        <h4 style="color: var(--accent-cyan); margin-bottom: 0.5rem;">NoSQLMap (NoSQL)</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.85rem;">Specialized tool for detecting injection and authentication bypass vulnerabilities in NoSQL databases like MongoDB, Redis, and CouchDB.</p>
+                        <p style="color: var(--text-muted); font-size: 0.75rem; margin-top: 10px;">⭐ 2.8K GitHub Stars | Python | GPL-3.0</p>
+                    </div>
+                </div>
+
+                <div class="card neon-border" style="display: flex; gap: 2rem; align-items: center;">
+                    <div style="font-size: 3rem;">🔐</div>
+                    <div>
+                        <h4 style="color: var(--accent-cyan); margin-bottom: 0.5rem;">SSL Auditor (TLS/SSL)</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.85rem;">High-performance certificate validator. Detects expired certificates, weak cipher suites, self-signed chains, and heartbleed vulnerabilities.</p>
+                        <p style="color: var(--text-muted); font-size: 0.75rem; margin-top: 10px;">⚡ Built-in Engine | Python SSL Engine | Secure</p>
+                    </div>
+                </div>
+
+                <div class="card neon-border" style="display: flex; gap: 2rem; align-items: center;">
+                    <div style="font-size: 3rem;">🛰️</div>
+                    <div>
+                        <h4 style="color: var(--accent-cyan); margin-bottom: 0.5rem;">IP Reputation (Threat Intel)</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.85rem;">Real-time integration with AbuseIPDB. Checks target IP reputation against a global database of reported SSH attacks, spam, and brute-force actors.</p>
+                        <p style="color: var(--text-muted); font-size: 0.75rem; margin-top: 10px;">🛡️ AbuseIPDB API | Real-time | Intel-Driven</p>
+                    </div>
+                </div>
+
+                <div class="card neon-border" style="display: flex; gap: 2rem; align-items: center;">
+                    <div style="font-size: 3rem;">🕵️</div>
+                    <div>
+                        <h4 style="color: var(--accent-cyan); margin-bottom: 0.5rem;">Data Breach Checker (OSINT)</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.85rem;">Cross-references associated domains and emails with global data breach repositories (e.g., HaveIBeenPwned) to identify leaked credentials and compromised accounts.</p>
+                        <p style="color: var(--text-muted); font-size: 0.75rem; margin-top: 10px;">🔍 OSINT Integration | Credential Leak Detection</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card" style="background: rgba(255,45,85,0.05); border: 1px solid rgba(255,45,85,0.2);">
+            <h3 style="color: var(--accent-red); margin-bottom: 1rem;">Legal Disclaimer</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">WebSecureX is strictly for educational and authorized security testing purposes. Scanning targets without explicit written permission is illegal and unethical. The authors are not responsible for any misuse of this platform.</p>
+        </section>
+    </main>
+
+    <script src="js/app.js"></script>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content card neon-border fadeInUp">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
+                <h2 style="color: var(--accent-cyan); font-family: 'Orbitron', sans-serif; margin: 0; font-size: 1.1rem;">USER SETTINGS</h2>
+                <button id="close-settings" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1.3rem;">&times;</button>
+            </div>
+            
+            <div class="settings-section">
+                <h3 style="color: var(--accent-green); font-size: 0.75rem; margin-bottom: 10px; letter-spacing: 1px;">WEBSITE CONTROLS</h3>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,212,255,0.05); padding: 8px 12px; border-radius: 4px; border: 1px solid rgba(0,212,255,0.1);">
+                        <span style="font-size: 0.7rem; color: var(--text-secondary);">Save Scan History Automatically</span>
+                        <label class="switch" style="transform: scale(0.85);"><input type="checkbox" checked><span class="slider"></span></label>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,212,255,0.05); padding: 8px 12px; border-radius: 4px; border: 1px solid rgba(0,212,255,0.1);">
+                        <span style="font-size: 0.7rem; color: var(--text-secondary);">Enable Real-time Threat Alerts</span>
+                        <label class="switch" style="transform: scale(0.85);"><input type="checkbox" checked><span class="slider"></span></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section" style="margin-top: 15px; border-top: 1px solid rgba(0,212,255,0.1); padding-top: 15px;">
+                <h3 style="color: var(--accent-orange); font-size: 0.75rem; margin-bottom: 10px; letter-spacing: 1px;">SECURITY: CHANGE PASSWORD</h3>
+                <form id="change-password-form" style="display: flex; flex-direction: column; gap: 8px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <input type="password" placeholder="Current" class="terminal-input" required style="font-size: 0.7rem; height: 32px;">
+                        <input type="password" placeholder="New" class="terminal-input" required style="font-size: 0.7rem; height: 32px;">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="height: 35px; font-size: 0.75rem;">UPDATE CREDENTIALS</button>
+                    <p id="password-status" style="font-size: 0.65rem; text-align: center; margin-top: 5px; display: none;"></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

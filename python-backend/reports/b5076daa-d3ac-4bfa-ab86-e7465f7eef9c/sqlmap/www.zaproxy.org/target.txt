@@ -1,0 +1,1 @@
+https://www.zaproxy.org/pricing?ui_step=28&ui_element=5 (GET)  # E:\WebSecureX.(2)\engines\sqli_engine\sqlmap\sqlmap.py -u https://www.zaproxy.org/ --data=username=test&password=test --batch --random-agent --dbs --crawl=3 --threads=5 --level=3 --risk=2 --output-dir=E:\WebSecureX.(2)\python-backend\reports\b5076daa-d3ac-4bfa-ab86-e7465f7eef9c\sqlmap

@@ -1,0 +1,3 @@
+https://sparrow.cloudflare.com/api/v1/event (POST)  # ..\sqli_engine\sqlmap.py -u https://www.appsecmaster.net/labs/sql-injection --batch --level=2 --risk=1 --forms --output-dir E:\WebSecureX.(2)\reports\0942a8ea-fb4b-4554-8007-bd129c7720fc\sqlmap
+
+JSON.stringify(a
