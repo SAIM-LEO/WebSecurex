@@ -198,8 +198,8 @@ class Scorer:
 # while ALSO capturing output for the report
 # ============================================================
 def launch_in_visible_window(title: str, cmd: list, output_file: str, hacker_mode: bool = False):
-    """Spawns a new coloured CMD window on Windows. Only if hacker_mode is True."""
-    if not hacker_mode: return None
+    """Spawns a new coloured CMD window on Windows. Only if hacker_mode is True and running on Windows."""
+    if not hacker_mode or sys.platform != "win32": return None
     
     # Robust quoting for Windows batch files - wrap everything in quotes
     cmd_str = " ".join(f'"{str(c)}"' for c in cmd)
@@ -632,12 +632,12 @@ class BreachScanner:
         scan_logs[scan_id].append(f"\n================================\nWebSecureX Terminal\nTool: Data Breach Monitor\nTarget Domain: {domain}\n================================\n")
         
         if hacker_mode:
-            scan_logs[scan_id].append("[ HACKER MODE ] Checking breach repositories in separate terminal...\n")
-            # For mock tools, we just show a placeholder bat
-            bat_path = os.path.abspath(f"reports/{scan_id}_breach_launch.bat")
-            with open(bat_path, "w") as f:
-                f.write(f"@echo off\ntitle BREACH MONITOR\ncolor 0E\necho Scanning breach repositories for {domain}...\ntimeout /t 5\necho.\necho [!] Found potential leaks in 3 databases\necho [!] admin@{domain} leaked in 'Collection #1'\necho.\npause")
-            subprocess.Popen(["cmd.exe", "/c", "start", "BREACH MONITOR", "cmd.exe", "/k", bat_path], shell=False)
+            scan_logs[scan_id].append("[ HACKER MODE ] Checking breach repositories...\n")
+            if sys.platform == "win32":
+                bat_path = os.path.abspath(f"reports/{scan_id}_breach_launch.bat")
+                with open(bat_path, "w") as f:
+                    f.write(f"@echo off\ntitle BREACH MONITOR\ncolor 0E\necho Scanning breach repositories for {domain}...\ntimeout /t 5\necho.\necho [!] Found potential leaks in 3 databases\necho [!] admin@{domain} leaked in 'Collection #1'\necho.\npause")
+                subprocess.Popen(["cmd.exe", "/c", "start", "BREACH MONITOR", "cmd.exe", "/k", bat_path], shell=False)
 
         scan_logs[scan_id].append(f"Searching dark web repositories for leaks related to {domain}...\n")
         
@@ -761,11 +761,12 @@ async def run_all_scans(url, scan_id, scan_type, user_id, db_override=None, scan
                     "echo  Querying global threat database...", f"echo  maxAgeInDays: {max_age} days", "echo.",
                     "echo  [RESULT WILL APPEAR IN DASHBOARD]", "echo.", "timeout /t 20"
                 ]
-                ip_bat_path = os.path.abspath(f"reports/{scan_id}_ip_launch.bat")
-                os.makedirs("reports", exist_ok=True)
-                with open(ip_bat_path, "w", encoding="utf-8") as f:
-                    f.write("\r\n".join(ip_bat_lines))
-                subprocess.Popen(["cmd.exe", "/c", "start", "AbuseIPDB ENGINE", "cmd.exe", "/k", ip_bat_path], shell=False)
+                if sys.platform == "win32":
+                    ip_bat_path = os.path.abspath(f"reports/{scan_id}_ip_launch.bat")
+                    os.makedirs("reports", exist_ok=True)
+                    with open(ip_bat_path, "w", encoding="utf-8") as f:
+                        f.write("\r\n".join(ip_bat_lines))
+                    subprocess.Popen(["cmd.exe", "/c", "start", "AbuseIPDB ENGINE", "cmd.exe", "/k", ip_bat_path], shell=False)
 
             api_key = os.getenv("ABUSEIPDB_API_KEY")
             ip_res = requests.get(

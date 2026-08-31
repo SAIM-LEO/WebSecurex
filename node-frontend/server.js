@@ -194,10 +194,31 @@ app.post('/check-ip', authMiddleware, async (req, res) => {
   }
 });
 
-mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/websecurex')
-  .then(() => {
+// Connect to MongoDB
+const connectDB = async () => {
+  if (mongoose.connection.readyState >= 1) return;
+  const uri = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/websecurex';
+  try {
+    await mongoose.connect(uri);
     console.log('✅ MongoDB connected');
-    const port = process.env.NODE_PORT || 3000;
+  } catch (err) {
+    console.error('DB connection error:', err);
+  }
+};
+
+// Middleware to ensure DB is connected before processing requests
+app.use(async (req, res, next) => {
+  await connectDB();
+  next();
+});
+
+// Start local server if not running on Vercel
+if (!process.env.VERCEL) {
+  connectDB().then(() => {
+    const port = process.env.NODE_PORT || process.env.PORT || 3000;
     app.listen(port, () => console.log(`🚀 WebSecureX running → http://localhost:${port}`));
-  })
-  .catch(err => console.error('DB error:', err));
+  });
+}
+
+module.exports = app;
+
