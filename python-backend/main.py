@@ -8,8 +8,9 @@ import uuid
 import requests
 from datetime import datetime
 from scanner import (ScanRequest, insert_scan, update_scan, get_scan,
-                     get_all_scans, delete_scan, run_all_scans)
+                     get_all_scans, delete_scan, run_all_scans, client)
 from dotenv import load_dotenv
+import re
 
 # Load environment variables from the root folder
 load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
@@ -27,7 +28,26 @@ app = FastAPI(lifespan=lifespan)
 
 @app.get("/")
 def root():
-    return {"status": "online", "service": "WebSecureX Python Backend API"}
+    return {"status": "online", "service": "WebSecureX Python Backend API", "version": "2.0.1"}
+
+@app.get("/api/diag")
+async def diagnostics():
+    db_status = "unknown"
+    mongo_uri = os.getenv("MONGO_URI", "not_set")
+    masked_uri = re.sub(r':([^@]+)@', r':****@', mongo_uri) if mongo_uri else "none"
+    try:
+        await client.admin.command('ping')
+        db_status = "connected"
+    except Exception as e:
+        db_status = f"connection_error: {str(e)}"
+    
+    return {
+        "status": "online",
+        "version": "2.0.1",
+        "mongo_configured": bool(mongo_uri and mongo_uri != "not_set"),
+        "mongo_uri_masked": masked_uri,
+        "database_status": db_status
+    }
 
 app.add_middleware(
     CORSMiddleware,
@@ -108,20 +128,24 @@ async def get_schedules(user_id: str):
 
 @app.post("/api/scan")
 async def start_scan(request: ScanRequest, background_tasks: BackgroundTasks):
-    scan_id = str(uuid.uuid4())
-    doc = {
-        "scan_id": scan_id, "user_id": request.user_id,
-        "target_url": request.url, "scan_type": request.scan_type,
-        "timestamp": datetime.now(), "status": "pending", "progress": 0,
-        "current_phase": "Queued", "overall_risk": "SAFE", 
-        "summary": {"total_vulnerabilities": 0, "total_duration_seconds": 0}, 
-        "scans": {"xss": {"status": "pending"}, "sqli": {"status": "pending"}, "nosql": {"status": "pending"}},
-        "scan_level": request.scan_level,
-        "hacker_mode": request.hacker_mode
-    }
-    await insert_scan(doc)
-    background_tasks.add_task(run_all_scans, request.url, scan_id, request.scan_type, request.user_id, request.db_override, request.scan_level, request.hacker_mode)
-    return {"scan_id": scan_id, "status": "started"}
+    try:
+        scan_id = str(uuid.uuid4())
+        doc = {
+            "scan_id": scan_id, "user_id": request.user_id,
+            "target_url": request.url, "scan_type": request.scan_type,
+            "timestamp": datetime.now(), "status": "pending", "progress": 0,
+            "current_phase": "Queued", "overall_risk": "SAFE", 
+            "summary": {"total_vulnerabilities": 0, "total_duration_seconds": 0}, 
+            "scans": {"xss": {"status": "pending"}, "sqli": {"status": "pending"}, "nosql": {"status": "pending"}},
+            "scan_level": request.scan_level,
+            "hacker_mode": request.hacker_mode
+        }
+        await insert_scan(doc)
+        background_tasks.add_task(run_all_scans, request.url, scan_id, request.scan_type, request.user_id, request.db_override, request.scan_level, request.hacker_mode)
+        return {"scan_id": scan_id, "status": "started"}
+    except Exception as e:
+        print(f"Error starting scan: {e}")
+        raise HTTPException(status_code=500, detail=f"Database/Scan startup error: {str(e)}")
 
 @app.get("/api/scan/{scan_id}/stream")
 async def stream_scan(scan_id: str):
