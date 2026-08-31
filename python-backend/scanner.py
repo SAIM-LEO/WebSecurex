@@ -12,6 +12,7 @@ from typing import Optional, List
 from datetime import datetime, timezone
 from pydantic import BaseModel
 from motor.motor_asyncio import AsyncIOMotorClient
+import certifi
 from dotenv import load_dotenv
 import requests
 
@@ -19,7 +20,12 @@ import requests
 load_dotenv("../.env")
 
 # Database Setup
-client = AsyncIOMotorClient(os.getenv("MONGO_URI", "mongodb://127.0.0.1:27017"))
+mongo_uri = os.getenv("MONGO_URI", "mongodb://127.0.0.1:27017")
+if "mongodb+srv://" in mongo_uri or "ssl=true" in mongo_uri.lower() or "tls=true" in mongo_uri.lower():
+    client = AsyncIOMotorClient(mongo_uri, tlsCAFile=certifi.where())
+else:
+    client = AsyncIOMotorClient(mongo_uri)
+
 db = client["websecurex"]
 scans = db["scans"]
 scan_logs = {} # Store real-time logs for SSE: {scan_id: [lines]}

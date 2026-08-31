@@ -4,7 +4,11 @@ python-multipart
 aiofiles
 motor
 pymongo
+dnspython
+certifi
+pydantic
 python-dotenv
 aiohttp
 requests
 python-Levenshtein
+

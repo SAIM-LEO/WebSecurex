@@ -8,8 +8,21 @@ const jwt = require('jsonwebtoken');
 const path = require('path');
 
 const app = express();
-const PYTHON = process.env.PYTHON_BACKEND_URL || 'http://127.0.0.1:8000';
+const PYTHON = (process.env.PYTHON_BACKEND_URL || 'http://127.0.0.1:8000').replace(/\/+$/, '');
 const JWT_SECRET = process.env.JWT_SECRET || 'websecurex_secret';
+
+function formatAxiosError(err) {
+  if (err.response && err.response.data) {
+    if (typeof err.response.data === 'string') return err.response.data;
+    if (err.response.data.detail) {
+      if (typeof err.response.data.detail === 'string') return err.response.data.detail;
+      return JSON.stringify(err.response.data.detail);
+    }
+    if (err.response.data.error) return err.response.data.error;
+    return JSON.stringify(err.response.data);
+  }
+  return err.message || 'Backend communication error';
+}
 
 // Schemas
 const UserSchema = new mongoose.Schema({
@@ -93,31 +106,31 @@ app.post('/auth/login', async (req, res) => {
 // Protected Scan Routes
 app.post('/scan', authMiddleware, async (req, res) => {
   try {
-    const response = await axios.post(`${PYTHON}/api/scan`, { ...req.body, user_id: req.user.userId });
-    // Python has already saved the scan to MongoDB, so we just return the ID to the frontend
+    const response = await axios.post(`${PYTHON}/api/scan`, { ...req.body, user_id: req.user.userId }, { timeout: 30000 });
     res.json(response.data);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error('Scan proxy error:', formatAxiosError(err));
+    res.status(err.response?.status || 500).json({ error: formatAxiosError(err) });
   }
 });
 
 app.get('/scan/:id/status', authMiddleware, async (req, res) => {
   try {
-    const response = await axios.get(`${PYTHON}/api/scan/${req.params.id}/status`);
+    const response = await axios.get(`${PYTHON}/api/scan/${req.params.id}/status`, { timeout: 15000 });
     await Scan.updateOne({ scan_id: req.params.id }, response.data);
     res.json(response.data);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(err.response?.status || 500).json({ error: formatAxiosError(err) });
   }
 });
 
 app.get('/scan/:id/report', authMiddleware, async (req, res) => {
   try {
-    const response = await axios.get(`${PYTHON}/api/scan/${req.params.id}/report`);
+    const response = await axios.get(`${PYTHON}/api/scan/${req.params.id}/report`, { timeout: 15000 });
     await Scan.updateOne({ scan_id: req.params.id }, response.data);
     res.json(response.data);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(err.response?.status || 500).json({ error: formatAxiosError(err) });
   }
 });
 
@@ -134,11 +147,11 @@ app.delete('/scan/:id', authMiddleware, async (req, res) => {
   try {
     const scan = await Scan.findOne({ scan_id: req.params.id, user_id: req.user.userId });
     if (!scan) return res.status(403).json({ error: 'Unauthorized' });
-    await axios.delete(`${PYTHON}/api/scan/${req.params.id}`);
+    await axios.delete(`${PYTHON}/api/scan/${req.params.id}`, { timeout: 15000 });
     await Scan.deleteOne({ scan_id: req.params.id });
     res.json({ message: 'Deleted' });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(err.response?.status || 500).json({ error: formatAxiosError(err) });
   }
 });
 
